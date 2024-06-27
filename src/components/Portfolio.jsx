@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import project1 from "../assets/project1.png";
 import project2 from "../assets/project2.png";
 import project3 from "../assets/project3.png";
-// import project4 from "../assets/project4.png";
+import project4 from "../assets/project4.png";
 import project5 from "../assets/project5.png";
 import project6 from "../assets/project6.png";
 import arrow from "../assets/arrow.png";
@@ -31,35 +31,35 @@ const projects = [
       },
       {
         img: project2,
-        title: "Seminar Hall Seat Resevervation App",
-        description: "A minimalist seminar hall booking seat reservation app built with ReactJS and TailwindCSS.",
+        title: "Seat Resevervation App",
+        description: "A minimalist seat reservation app built with ReactJS and TailwindCSS.",
         links: {
           site: "https://seminar-hall-seat-resevation-app.vercel.app/",
           github: "https://github.com/salmanck66/Seminar-Hall-Seat-Resevation-App",
         },
       },
       {
-        img: "",
-        title: "Project #4",
+        img: project4,
+        title: "User Management Tool",
         description:
-          "An e-commerce platform with various features.",
+          "A simple user management tool using react and redux as state management tool",
         links: {
-          site: "#",
-          github: "#",
+          site: "https://user-details-management-react-redux.vercel.app/",
+          github: "https://github.com/salmanck66/User_Details_Management_React_Redux",
         },
       },
       {
         img: project5,
-        title: "Project #5",
-        description: "A mobile-friendly application using React Native.",
+        title: "Javascript Quiz App",
+        description: "A simple Javascript app using vanilla javascript",
         links: {
-          site: "#",
-          github: "#",
+          site: "https://javascript-quiz-app-react.vercel.app/",
+          github: "https://github.com/salmanck66/Javascript-Quiz-App-React",
         },
       },
       {
         img: project6,
-        title: "Project #6",
+        title: "Keyboard Clone",
         description:
           "A data visualization project using D3.js and other libraries.",
         links: {
