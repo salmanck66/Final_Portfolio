@@ -8,7 +8,7 @@ import {
   DiNodejsSmall,
   DiHtml5,
   DiCss3,DiGit,
-  DiBootstrap,DiMongodb,
+  DiBootstrap,DiMongodb,DiAws,DiJqueryLogo,DiNginx
 } from "react-icons/di";
 import ShinyEffect from "./ShinyEffect";
 
@@ -75,6 +75,9 @@ const Hero = () => {
             <DiNodejsSmall className="text-green-500" />
             <DiMongodb className="text-green-800" />
             <DiGit className="text-orange-800" />
+            <DiAws className="text-stone-600" />
+            <DiJqueryLogo className="text-blue-800" />
+            <DiNginx className="text-green-800" />
           </div>
         </div>
 

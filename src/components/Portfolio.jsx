@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import project1 from "../assets/project1.png";
 import project2 from "../assets/project2.png";
 import project3 from "../assets/project3.png";
-import project4 from "../assets/project4.png";
+// import project4 from "../assets/project4.png";
 import project5 from "../assets/project5.png";
 import project6 from "../assets/project6.png";
 import arrow from "../assets/arrow.png";
@@ -10,11 +10,20 @@ import { AiFillGithub } from 'react-icons/ai'
 import ShinyEffect from './ShinyEffect';
 
 const projects = [
-    {
-        img: project1,
-        title: "Kanban ToDo App",
+  {
+    img: project3,
+    title: "Ecommerce Webiste - jcclub.shop",
+    description: "A complete ecommerce website made with NodeJs,Express,MongoDB and HBS",
+    links: {
+      site: "wwww.jcclub.shop",
+      github: "https://github.com/salmanck66/Ecommerce-Project-",
+    },
+  },
+  {
+    img: project1,
+        title: "Kanban ToDo App ",
         description:
-          "Kanban Style Draggable Todo App Using Reactjs",
+          "Kanban Style Drag And Drop Todo App Built with ReactJS and TailwindCSS",
         links: {
           site: "https://kanban-to-do-tasks-drag-and-drop.vercel.app/",
           github: "https://github.com/salmanck66/Kanban_To_Do_Tasks_Drag_And_Drop",
@@ -22,24 +31,15 @@ const projects = [
       },
       {
         img: project2,
-        title: "Project #2",
-        description: "A fullstack application built with Node.js and MongoDB.",
+        title: "Seminar Hall Seat Resevervation App",
+        description: "A minimalist seminar hall booking seat reservation app built with ReactJS and TailwindCSS.",
         links: {
-          site: "#",
-          github: "#",
+          site: "https://seminar-hall-seat-resevation-app.vercel.app/",
+          github: "https://github.com/salmanck66/Seminar-Hall-Seat-Resevation-App",
         },
       },
       {
-        img: project3,
-        title: "Project #3",
-        description: "A responsive website designed with modern CSS.",
-        links: {
-          site: "#",
-          github: "#",
-        },
-      },
-      {
-        img: project4,
+        img: "",
         title: "Project #4",
         description:
           "An e-commerce platform with various features.",
