@@ -23,7 +23,7 @@ const projects = [
     img: project1,
         title: "Kanban ToDo App ",
         description:
-          "Kanban Style Drag And Drop Todo App Built with ReactJS and TailwindCSS",
+          "Kanban style drag and drop todo app built with reactJS and tailwindCSS with progress statuses",
         links: {
           site: "https://kanban-to-do-tasks-drag-and-drop.vercel.app/",
           github: "https://github.com/salmanck66/Kanban_To_Do_Tasks_Drag_And_Drop",
@@ -32,7 +32,7 @@ const projects = [
       {
         img: project2,
         title: "Seat Resevervation App",
-        description: "A minimalist seat reservation app built with ReactJS and TailwindCSS.",
+        description: "A minimalist seat reservation app built with ReactJS and TailwindCSS that can be extended with multiple features",
         links: {
           site: "https://seminar-hall-seat-resevation-app.vercel.app/",
           github: "https://github.com/salmanck66/Seminar-Hall-Seat-Resevation-App",
@@ -42,7 +42,7 @@ const projects = [
         img: project4,
         title: "User Management Tool",
         description:
-          "A simple user management tool using react and redux as state management tool",
+          "A simple user management tool using react and redux as state management tool to demonstate CRUD operations and redux toolkit",
         links: {
           site: "https://user-details-management-react-redux.vercel.app/",
           github: "https://github.com/salmanck66/User_Details_Management_React_Redux",
@@ -51,7 +51,7 @@ const projects = [
       {
         img: project5,
         title: "Javascript Quiz App",
-        description: "A simple Javascript app using vanilla javascript",
+        description: "A simple Javascript app using vanilla javascript,Data persistance using LocalStorage",
         links: {
           site: "https://javascript-quiz-app-react.vercel.app/",
           github: "https://github.com/salmanck66/Javascript-Quiz-App-React",
@@ -61,10 +61,10 @@ const projects = [
         img: project6,
         title: "Keyboard Clone",
         description:
-          "A data visualization project using D3.js and other libraries.",
+          "A simple keyboard and a section to visualize how it functions , made with react ",
         links: {
-          site: "#",
-          github: "#",
+          site: "https://keyboard-react-one.vercel.app/",
+          github: "https://github.com/salmanck66/Keyboard_React",
         },
       }
 ]
@@ -73,9 +73,7 @@ const Portfolio = () => {
     const [currentProject, setCurrentProject] = useState(0)
 
   return (
-    <div className='my-6 max-w-[1200px] mx-auto grid grid-cols-8 gap-6 md:py-40' id="portfolio">
-
-
+<div className='my-6 max-w-[1200px] mx-auto grid flex-wrap grid-cols-8 gap-6 md:py-40' id="portfolio">
 <div className='z-10 col-span-3 grid place-items-center grid-cols-1 relative'>
   <p className='text-gray-200 font-bold text-4xl -skew-y-6 '>Select Project</p>
   <img src={arrow} className='absolute w-[50px] top-10 right-12' />
@@ -97,18 +95,11 @@ const Portfolio = () => {
   </ul>
 </div>
 
-        
-
-
-
-
         <div className='z-10 glass  w-full border-2 col-span-5'>
             <div className='w-full h-80'>
                 <img src={projects[currentProject].img} alt={projects[currentProject].title} 
                 className='w-full h-full object-cover rounded-lg mb-4'/>
             </div>
-
-
             <div className='p-6'>
               <p className='text-gray-200 my-4'>
                   {projects[currentProject].description}

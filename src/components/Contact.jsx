@@ -12,43 +12,17 @@ const Contact = () => {
                     <div className="text-gray-300 my-3">
                         <h3 className="text-4xl font-semibold mb-5">About <span>Me</span></h3>
                         <p className="text-justify leading-7 w-11/12 mx-auto">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa
-                            eos, quam vel quisquam, explicabo sit labore dignissimos optio
-                            ratione quibusdam doloribus pariatur consequuntur sint.
-                            Reprehenderit cupiditate possimus facere quasi voluptatem?
+                        Hello! I'm Salmanul Faris CK,
+                        A Full Stack Web Developer specializing in the MERN stack, Proficient in ReactJs and NodeJS, with a strong problemsolving mindset and a collaborative approach. Quick to adapt to new technologies, making me a valuable asset in dynamic web development environments.
                         </p>     
                     </div>
                 </div> 
-                
-
-                <div className="flex mt-10 items-center gap-7">
-                    <div className="bg-[#333333]/40 p-5 rounded-lg">
-                        <h3 className="md:text-4xl text-2xl font-semibold text-white">11
-                            <span>+</span>
-                        </h3>
-                        <p><span className="md:text-base text-xs">Projects</span></p>
-                    </div>
-                    <div className="bg-[#333333]/40 p-5 rounded-lg">
-                        <h3 className="md:text-4xl text-2xl font-semibold text-white">5
-                            <span>+</span>
-                        </h3>
-                        <p><span className="md:text-base text-xs">years experience</span></p>
-                    </div>
-                    <div className="bg-[#333333]/40 p-5 rounded-lg">
-                        <h3 className="md:text-4xl text-2xl font-semibold text-white">30
-                            <span>+</span>
-                        </h3>
-                        <p><span className="md:text-base text-xs">happy clients</span></p>
-                    </div>
-                </div>
-
-
-
+        
             </div>
 
 
 
-            <form action="https://getform.io/f/placeYourEndpointHere" method="POST" 
+            <form action="https://getform.io/f/ebpddzvb" method="POST" 
             className=' max-w-6xl p-5 md:p-12' id="form">
                 <p className='text-gray-100 font-bold text-xl mb-2'>Let´s connect!</p>
                 <input
