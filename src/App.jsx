@@ -12,7 +12,6 @@ export default function App() {
       <Hero/>
       <Portfolio/>
       <Contact/>
-      <About/>
       <Footer/>
     </>
   )

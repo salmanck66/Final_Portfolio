@@ -13,7 +13,7 @@ const Navbar = () => {
       className="text-gray-200 flex justify-between items-center max-w-[1240px]
          mx-auto h-24 px-4 text-l"
     >
-      <h1 class="text-3xl font-bold ml-4 hover:text-4xl animate-scale duration-300 ease-in-out cursor-pointer text-neutral-200">
+      <h1 className="text-3xl font-bold ml-4 hover:text-4xl animate-scale duration-300 ease-in-out cursor-pointer text-neutral-200">
         SALMANUL FARIS CK
       </h1>
 

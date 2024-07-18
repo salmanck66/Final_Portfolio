@@ -41,7 +41,7 @@ const Hero = () => {
           <p className="inset-0 text-2xl md:text-4xl font-bold text-gray-200">
             Hi! I am <br /> Salmanul Faris Ck <br />
             <TypeAnimation
-              sequence={["MERN Stack", 1000, "Web Developer", 1000]}
+              sequence={["MERN Stack", 1000, "Developer", 1000]}
               wrapper="span"
               speed={50}
               repeat={Infinity}

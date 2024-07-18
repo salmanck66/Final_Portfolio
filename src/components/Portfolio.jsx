@@ -5,6 +5,8 @@ import project3 from "../assets/project3.png";
 import project4 from "../assets/project4.png";
 import project5 from "../assets/project5.png";
 import project6 from "../assets/project6.png";
+import project8 from "../assets/project8.png";
+import project9 from "../assets/project9.png";
 import arrow from "../assets/arrow.png";
 import { AiFillGithub } from 'react-icons/ai'
 import ShinyEffect from './ShinyEffect';
@@ -65,6 +67,26 @@ const projects = [
         links: {
           site: "https://keyboard-react-one.vercel.app/",
           github: "https://github.com/salmanck66/Keyboard_React",
+        },
+      },
+      {
+        img: project8,
+        title: "Post scheduler",
+        description:
+          "An app made for scheduling posts based on date and time or instant post made with react ",
+        links: {
+          site: "https://post-scheduler-lyart.vercel.app/",
+          github: "https://github.com/salmanck66/Post-Scheduler",
+        },
+      },
+      {
+        img: project9,
+        title: "Stop Watch",
+        description:
+          "A simple and stylish stop watch made using reactJs and styles and made responsive in tailwindCSS ",
+        links: {
+          site: "https://stop-watch-react-js-six.vercel.app/",
+          github: "https://github.com/salmanck66/StopWatch-ReactJs",
         },
       }
 ]
