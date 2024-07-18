@@ -31,7 +31,7 @@ const Hero = () => {
       <div className="grid grid-cols-2 md:col-span-5 glass p-8">
         <div className="my-auto">
           <img
-            className="w-[800px] mx-auto h-auto "
+            className="w-[800px] mx-auto h-auto  hover:w-[900px] ease-in-out"
             src={profilepic}
             alt="profile pic"
           />
