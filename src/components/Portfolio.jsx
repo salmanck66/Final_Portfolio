@@ -92,8 +92,8 @@ const Portfolio = () => {
     <div className='my-6 max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 md:py-40' id="portfolio">
       <div className='col-span-1 md:col-span-1 grid place-items-center relative'>
         <p className='text-gray-200 font-bold text-4xl -skew-y-6 '>Select Project</p>
-        <img src={arrow} className='absolute w-[50px] top-10 right-12' alt="Arrow" />
-        <ul className='ml-6 flex flex-row md:flex-col gap-6 flex-wrap justify-center md:gap-1 space-y-2 md:space-y-4 text-2xl'>
+        <img src={arrow} className='absolute w-[50px] top-10 right-12 ' alt="Arrow" />
+        <ul className='ml-6 flex flex-row mt-14 md:flex-col gap-6 flex-wrap justify-center md:gap-1 space-y-2 sm:mt-8 md:space-y-4 text-2xl'>
           {projects.map((project, index) => (
             <li
               key={index}

@@ -14,7 +14,7 @@ import {
 const About = () => {
   return (
     <div
-      className="max-w-[1000px] mx-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-8 place-items-center md:py-24"
+      className="max-w-[1000px] mx-auto p-6 grid  place-items-center md:py-24"
       id="about"
     >
       <div className="p-6">
