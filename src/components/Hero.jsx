@@ -41,7 +41,7 @@ const Hero = () => {
         </div>
 
         <div className="my-auto sm:ml-8 flex-col">
-          <p className="text-2xl md:text-4xl font-bold text-gray-200">
+          <p className="text-xl md:text-4xl font-bold text-gray-200">
             Hi! I am <br /> Salmanul Faris Ck <br />
             <TypeAnimation
               sequence={["MERN Stack", 1000, "Developer", 1000]}

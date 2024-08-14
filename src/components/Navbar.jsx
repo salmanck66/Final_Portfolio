@@ -8,12 +8,16 @@ const Navbar = () => {
     setNav(!nav);
   };
 
+  const closeMenu = () => {
+    setNav(false);
+  };
+
   return (
     <div
       className="text-gray-200 flex justify-between items-center max-w-[1240px]
          mx-auto h-24 px-4 text-l"
     >
-      <h1 className="text-3xl font-bold ml-4 hover:text-4xl animate-scale duration-300 ease-in-out cursor-pointer text-neutral-200">
+      <h1 className="text-xl sm:text-3xl font-bold ml-4 sm:hover:text-4xl animate-scale duration-300 ease-in-out cursor-pointer text-neutral-200">
         SALMANUL FARIS CK
       </h1>
 
@@ -36,7 +40,7 @@ const Navbar = () => {
       </ul>
 
       <div onClick={handleNav} className="z-50 block md:hidden">
-        {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
+        {nav ? <AiOutlineClose size={30} /> : <AiOutlineMenu size={20} />}
       </div>
 
       <div
@@ -46,16 +50,16 @@ const Navbar = () => {
             : "fixed left-[-100%]"
         }
       >
-        <h1 className="text-3xl primary-color m-4">SALMNAUL FARIS CK</h1>
+        <h1 className="text-3xl primary-color m-4">SALMANUL FARIS CK</h1>
         <ul className="p-8 text-2xl">
           <li className="p-2">
-            <a href="#about">About</a>
+            <a href="#about" onClick={closeMenu}>About</a>
           </li>
           <li className="p-2">
-            <a href="#portfolio">Portfolio</a>
+            <a href="#portfolio" onClick={closeMenu}>Portfolio</a>
           </li>
           <li className="p-2">
-            <a href="#contact">Contact</a>
+            <a href="#contact" onClick={closeMenu}>Contact</a>
           </li>
         </ul>
       </div>
