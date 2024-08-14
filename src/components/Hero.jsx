@@ -28,7 +28,7 @@ const Hero = () => {
       className="max-w-[1200px] mx-auto grid md:grid-cols-8 gap-6 p-10 md:p-0 md:py-40"
       id="home"
     >
-      <div className="grid grid-cols-2 md:col-span-5 glass p-8">
+      <div className="glass grid grid-cols-2 col-span-1 md:col-span-5  p-8">
         <div className="my-auto">
           <img
             className="w-[800px] mx-auto h-auto  hover:w-[900px] ease-in-out"
@@ -37,7 +37,7 @@ const Hero = () => {
           />
         </div>
 
-        <div className="my-auto ml-8  flex-col">
+        <div className="my-auto  sm:ml-8  flex-col">
           <p className="inset-0 text-2xl md:text-4xl font-bold text-gray-200">
             Hi! I am <br /> Salmanul Faris Ck <br />
             <TypeAnimation
