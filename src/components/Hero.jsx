@@ -7,38 +7,41 @@ import {
   DiReact,
   DiNodejsSmall,
   DiHtml5,
-  DiCss3,DiGit,
-  DiBootstrap,DiMongodb,DiAws,DiJqueryLogo,DiNginx
+  DiCss3,
+  DiGit,
+  DiBootstrap,
+  DiMongodb,
+  DiAws,
+  DiJqueryLogo,
+  DiNginx,
 } from "react-icons/di";
 import ShinyEffect from "./ShinyEffect";
 
 const Hero = () => {
   const handleDownloadCV = () => {
-    const pdfUrl = '/Salmanul Faris CK-1.pdf'; // Replace with actual PDF URL
+    const pdfUrl = "/Salmanul Faris CK-1.pdf"; // Replace with actual PDF URL
 
-    const link = document.createElement('a');
+    const link = document.createElement("a");
     link.href = pdfUrl;
-    link.download = 'Salmanul Faris CK-1.pdf';
+    link.download = "Salmanul Faris CK-1.pdf";
 
     // Simulate a click on the link to initiate the download
     link.click();
   };
+
   return (
     <div
-      className="max-w-[1200px] mx-auto grid md:grid-cols-8 gap-6 p-10 md:p-0 md:py-40"
+      className="max-w-full mx-auto grid md:grid-cols-8 gap-6 p-6 md:py-40"
       id="home"
+      style={{ overflowX: "hidden" }}
     >
-      <div className="glass grid grid-cols-2 col-span-1 md:col-span-5  p-8">
+      <div className="glass grid grid-cols-2 col-span-1 md:col-span-5 p-8">
         <div className="my-auto">
-          <img
-            className="w-[800px] mx-auto h-auto  hover:w-[900px] ease-in-out"
-            src={profilepic}
-            alt="profile pic"
-          />
+          <img className="mx-auto h-auto" src={profilepic} alt="profile pic" />
         </div>
 
-        <div className="my-auto  sm:ml-8  flex-col">
-          <p className="inset-0 text-2xl md:text-4xl font-bold text-gray-200">
+        <div className="my-auto sm:ml-8 flex-col">
+          <p className="text-2xl md:text-4xl font-bold text-gray-200">
             Hi! I am <br /> Salmanul Faris Ck <br />
             <TypeAnimation
               sequence={["MERN Stack", 1000, "Developer", 1000]}
@@ -47,22 +50,17 @@ const Hero = () => {
               repeat={Infinity}
             />
           </p>
-          <p className="text-xl md:text-3xl font-bold text-gray-500">
-            with live project experience
-          </p>
-          <a href="">
           <button
-            className="mt-4 px-4 py-2 text-lg font-bold text-white bg-primary-color rounded-xl"
+            className="mt-4 px-2 sm:px-4 py-2 text-xs sm:text-lg font-bold text-white bg-primary-color rounded-xl"
             onClick={handleDownloadCV}
           >
             Download CV
           </button>
-          </a>
         </div>
       </div>
 
-      <div className="grid grid-cols-1  md:col-span-3 gap-6">
-        <div className="text-5xl p-12 glass">
+      <div className="grid grid-cols-1 md:col-span-3 gap-6">
+        <div className="text-5xl p-8 md:p-12 glass">
           <p className="text-gray-200 text-xl font-bold mb-4 text-center">
             My Tech Stack
           </p>
@@ -89,7 +87,7 @@ const Hero = () => {
               rel="noopener noreferrer"
               title="LinkedIn"
             >
-              <AiFillLinkedin cursor={true} className="text-gray-600" />
+              <AiFillLinkedin cursor="true" className="text-gray-600" />
             </a>
             <a
               href="https://github.com/salmanck66"
@@ -102,11 +100,11 @@ const Hero = () => {
           </div>
         </div>
 
-        <div className="absolute overflow-hidden md:overflow-visible">
+        {/* <div className="absolute overflow-hidden md:overflow-visible">
           <div className="hidden md:block">
             <ShinyEffect left={550} top={100} size={700} />
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
