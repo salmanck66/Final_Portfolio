@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { AiFillGithub } from 'react-icons/ai';
 import project1 from "../assets/project1.png";
 import project2 from "../assets/project2.png";
@@ -87,6 +87,14 @@ const projects = [
 
 const Portfolio = () => {
   const [currentProject, setCurrentProject] = useState(0);
+  const projectInfoRef = useRef(null);
+
+  const handleProjectClick = (index) => {
+    setCurrentProject(index);
+    if (window.innerWidth < 768 && projectInfoRef.current) {
+      projectInfoRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <div className='my-6 max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 md:py-40' id="portfolio">
@@ -97,7 +105,7 @@ const Portfolio = () => {
           {projects.map((project, index) => (
             <li
               key={index}
-              onClick={() => setCurrentProject(index)}
+              onClick={() => handleProjectClick(index)}
               className={`cursor-pointer text-gray-300 rounded-lg px-2 hover:bg-slate-600 transition duration-300 ${currentProject === index ? 'active-project' : ''}`}
             >
               {project.title}
@@ -106,7 +114,7 @@ const Portfolio = () => {
         </ul>
       </div>
 
-      <div className='col-span-2 md:col-span-2'>
+      <div className='col-span-2 md:col-span-2' ref={projectInfoRef}>
         <div className='glass border-2 w-full'>
           <div className='w-full h-80'>
             <img src={projects[currentProject].img} alt={projects[currentProject].title} className='w-full h-full object-cover rounded-lg mb-4' />
