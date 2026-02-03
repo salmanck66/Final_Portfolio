@@ -45,8 +45,10 @@ const Contact = () => {
                     <div className="text-gray-300 my-3">
                         <h3 className="text-4xl font-semibold mb-5">About <span>Me</span></h3>
                         <p className="text-justify leading-7 w-11/12 mx-auto">
-                            Hello! I'm Salmanul Faris CK,
-                            A Full Stack Web Developer specializing in the MERN stack, Proficient in ReactJs and NodeJS, with a strong problemsolving mindset and a collaborative approach. Quick to adapt to new technologies, making me a valuable asset in dynamic web development environments.
+                           Hi, I’m Salmanul Faris C.K, a passionate Full Stack Web Developer specializing in the MERN stack. I primarily work with React.js and Node.js, but I enjoy exploring and adapting to new frameworks and technologies.
+I love solving complex problems through logical thinking, clean coding, and structured development. I thrive in collaborative environments where creativity and teamwork drive meaningful results.
+With over 40 mini projects, professional experience in Shopify app development, and real-world startup exposure at Helixo, I bring both technical depth and product mindset to every project I work on. My goal is to keep learning, building, and delivering impactful digital solutions.
+
                         </p>
                     </div>
                 </div>
