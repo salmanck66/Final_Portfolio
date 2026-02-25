@@ -4,7 +4,7 @@ import * as THREE from "three";
 /* ══════════════════════════════════════════
    DATA
 ══════════════════════════════════════════ */
-const SECTIONS = ["home", "about", "experience", "projects", "contact"];
+const SECTIONS = ["home", "about", "experience", "projects", "services", "contact"];
 
 const techStack = [
   { name: "React", color: "#61DAFB" }, { name: "Node.js", color: "#68A063" },
@@ -65,12 +65,108 @@ const MINI = [
   { name: "Post Scheduler", desc: "Schedule posts by date/time or publish instantly.", tech: ["React"], color: "#00A8FF", site: "https://post-scheduler-lyart.vercel.app/", github: "https://github.com/salmanck66/Post-Scheduler" },
   { name: "StopWatch", desc: "Stylish responsive stopwatch with lap tracking.", tech: ["React", "TailwindCSS"], color: "#00FFB2", site: "https://stop-watch-react-js-six.vercel.app/", github: "https://github.com/salmanck66/StopWatch-ReactJs" },
 ];
-//minia
+
+/* ══════════════════════════════════════════
+   SERVICES DATA
+══════════════════════════════════════════ */
+const SERVICES = [
+  {
+    id: "custom-app",
+    icon: "⬡",
+    title: "Custom App Development",
+    short: "Full-stack web apps built from scratch — fast, scalable, and production-ready.",
+    color: "#00FFB2",
+    features: [
+      "MERN stack / Next.js / Remix / Svelte",
+      "REST & GraphQL API design",
+      "Auth, payments & dashboards",
+      "AWS / DigitalOcean deployment",
+      "Docker & CI/CD setup",
+    ],
+    cta: "Book This Service",
+  },
+  {
+    id: "extension-dev",
+    icon: "◈",
+    title: "Extension Development",
+    short: "Browser extensions and Shopify app extensions that supercharge your platform.",
+    color: "#00A8FF",
+    features: [
+      "Chrome / Firefox extensions (CRXJS)",
+      "Shopify Theme Extensions",
+      "Shopify Admin & Checkout UI Extensions",
+      "React-based extension UIs",
+      "Extension publishing & maintenance",
+    ],
+    cta: "Book This Service",
+  },
+  {
+    id: "business-solutions",
+    icon: "◆",
+    title: "Business Solutions",
+    short: "End-to-end digital solutions tailored to real business problems — not just code.",
+    color: "#FFD166",
+    features: [
+      "SaaS product development",
+      "Internal tools & admin dashboards",
+      "Workflow automation systems",
+      "Third-party API integrations",
+      "Performance & cost optimization",
+    ],
+    cta: "Book This Service",
+  },
+  {
+    id: "shopify-setup",
+    icon: "◉",
+    title: "Shopify Store Setup",
+    short: "Get your Shopify store launched the right way — fully configured and optimized.",
+    color: "#96BF48",
+    features: [
+      "Theme setup & brand customization",
+      "App installation & configuration",
+      "Product, collection & menu setup",
+      "Payment gateway & shipping setup",
+      "Speed & SEO optimization",
+    ],
+    cta: "Book This Service",
+  },
+  {
+    id: "shopify-fix",
+    icon: "◎",
+    title: "Shopify Bug Fix & Customization",
+    short: "Something broken or off-brand? I'll fix it fast and make it look exactly right.",
+    color: "#FF6B6B",
+    features: [
+      "Theme bug fixes & patches",
+      "Liquid template customization",
+      "Custom section / block creation",
+      "App conflict resolution",
+      "Mobile responsiveness fixes",
+    ],
+    cta: "Book This Service",
+  },
+  {
+    id: "shopify-app",
+    icon: "⬟",
+    title: "Shopify App Development",
+    short: "Custom Shopify apps built with the latest stack — embedded or standalone.",
+    color: "#818CF8",
+    features: [
+      "Embedded Shopify apps (Remix / Next.js)",
+      "Shopify API & GraphQL integration",
+      "Billing & subscription setup",
+      "Multi-merchant architecture",
+      "App Store submission ready",
+    ],
+    cta: "Book This Service",
+  },
+];
+
 const FORMSPREE_URL = "https://formspree.io/f/mpqjkkrq";
 const CV_URL = "https://drive.google.com/uc?export=download&id=1Z1LANp-jSfdch7fjXpHNEp4i-cVlAenf";
 
 /* ══════════════════════════════════════════
-   SCROLL REVEAL HOOKS
+   SCROLL REVEAL HOOK
 ══════════════════════════════════════════ */
 function useReveal() {
   const ref = useRef(null);
@@ -86,9 +182,6 @@ function useReveal() {
   return [ref, visible];
 }
 
-/* ══════════════════════════════════════════
-   REVEAL WRAPPER
-══════════════════════════════════════════ */
 function Reveal({ children, delay = 0, direction = "up", style }) {
   const [ref, visible] = useReveal();
   const translate = direction === "up" ? "translateY(40px)" : direction === "left" ? "translateX(-40px)" : direction === "right" ? "translateX(40px)" : "translateY(0)";
@@ -105,9 +198,7 @@ function Reveal({ children, delay = 0, direction = "up", style }) {
 }
 
 /* ══════════════════════════════════════════
-   THREE.JS HERO — MOBILE RESPONSIVE
-   Uses devicePixelRatio capped at 1.5 on mobile,
-   lower particle count, touch-based parallax
+   THREE.JS HERO
 ══════════════════════════════════════════ */
 function HeroCanvas({ mousePosRef, isMobile }) {
   const canvasRef = useRef(null);
@@ -118,33 +209,25 @@ function HeroCanvas({ mousePosRef, isMobile }) {
     const canvas = canvasRef.current;
     if (!canvas || !container) return;
 
-    // Mobile: cap pixel ratio and reduce complexity
     const dpr = isMobile ? Math.min(window.devicePixelRatio, 1.5) : Math.min(window.devicePixelRatio, 2);
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: !isMobile, alpha: true });
     renderer.setPixelRatio(dpr);
-
-    const setSize = () => {
-      const w = container.clientWidth;
-      const h = container.clientHeight;
-      renderer.setSize(w, h, false);
-      camera.aspect = w / h;
-      camera.updateProjectionMatrix();
-    };
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(55, 1, 0.1, 100);
     camera.position.z = isMobile ? 7 : 5;
 
-    // Fewer particles on mobile for performance
+    const setSize = () => {
+      const w = container.clientWidth, h = container.clientHeight;
+      renderer.setSize(w, h, false);
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+    };
+
     const count = isMobile ? 1000 : 2200;
     const positions = new Float32Array(count * 3);
     const colors = new Float32Array(count * 3);
-    const palettes = [
-      new THREE.Color("#00FFB2"),
-      new THREE.Color("#00A8FF"),
-      new THREE.Color("#818CF8"),
-      new THREE.Color("#ffffff"),
-    ];
+    const palettes = [new THREE.Color("#00FFB2"), new THREE.Color("#00A8FF"), new THREE.Color("#818CF8"), new THREE.Color("#ffffff")];
     for (let i = 0; i < count; i++) {
       const spread = isMobile ? 10 : 16;
       positions[i*3]   = (Math.random() - 0.5) * spread;
@@ -156,42 +239,37 @@ function HeroCanvas({ mousePosRef, isMobile }) {
     const pGeo = new THREE.BufferGeometry();
     pGeo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
     pGeo.setAttribute("color", new THREE.BufferAttribute(colors, 3));
-    const pMat = new THREE.PointsMaterial({
-      size: isMobile ? 0.055 : 0.035,
-      vertexColors: true, transparent: true, opacity: isMobile ? 0.8 : 0.65,
-    });
+    const pMat = new THREE.PointsMaterial({ size: isMobile ? 0.055 : 0.035, vertexColors: true, transparent: true, opacity: isMobile ? 0.8 : 0.65 });
     const points = new THREE.Points(pGeo, pMat);
     scene.add(points);
 
-    // On mobile use simpler geometry (icosahedron only — lighter)
     if (!isMobile) {
       const torusGeo = new THREE.TorusKnotGeometry(1.6, 0.28, 80, 12);
-      const torusMat = new THREE.MeshBasicMaterial({ color: "#00FFB2", wireframe: true, transparent: true, opacity: 0.09 });
-      scene.add(new THREE.Mesh(torusGeo, torusMat));
+      scene.add(new THREE.Mesh(torusGeo, new THREE.MeshBasicMaterial({ color: "#00FFB2", wireframe: true, transparent: true, opacity: 0.09 })));
     }
 
-    const icoGeo = new THREE.IcosahedronGeometry(isMobile ? 1.4 : 1.1, 1);
-    const icoMat = new THREE.MeshBasicMaterial({ color: "#00FFB2", wireframe: true, transparent: true, opacity: isMobile ? 0.14 : 0.08 });
-    const ico = new THREE.Mesh(icoGeo, icoMat);
+    const ico = new THREE.Mesh(
+      new THREE.IcosahedronGeometry(isMobile ? 1.4 : 1.1, 1),
+      new THREE.MeshBasicMaterial({ color: "#00FFB2", wireframe: true, transparent: true, opacity: isMobile ? 0.14 : 0.08 })
+    );
     scene.add(ico);
 
-    // Second ring on mobile — looks great
-    const ringGeo = new THREE.TorusGeometry(2.2, 0.008, 8, 80);
-    const ringMat = new THREE.MeshBasicMaterial({ color: "#00FFB2", transparent: true, opacity: isMobile ? 0.25 : 0.12 });
-    const ring = new THREE.Mesh(ringGeo, ringMat);
+    const ring = new THREE.Mesh(
+      new THREE.TorusGeometry(2.2, 0.008, 8, 80),
+      new THREE.MeshBasicMaterial({ color: "#00FFB2", transparent: true, opacity: isMobile ? 0.25 : 0.12 })
+    );
     ring.rotation.x = Math.PI / 3;
     scene.add(ring);
 
-    const ring2Geo = new THREE.TorusGeometry(1.5, 0.006, 8, 80);
-    const ring2Mat = new THREE.MeshBasicMaterial({ color: "#00A8FF", transparent: true, opacity: isMobile ? 0.2 : 0.1 });
-    const ring2 = new THREE.Mesh(ring2Geo, ring2Mat);
-    ring2.rotation.x = -Math.PI / 4;
-    ring2.rotation.y = Math.PI / 6;
+    const ring2 = new THREE.Mesh(
+      new THREE.TorusGeometry(1.5, 0.006, 8, 80),
+      new THREE.MeshBasicMaterial({ color: "#00A8FF", transparent: true, opacity: isMobile ? 0.2 : 0.1 })
+    );
+    ring2.rotation.x = -Math.PI / 4; ring2.rotation.y = Math.PI / 6;
     scene.add(ring2);
 
     setSize();
 
-    // Touch parallax for mobile
     let touchTarget = { x: 0, y: 0 };
     const onTouch = (e) => {
       const t = e.touches[0];
@@ -204,15 +282,10 @@ function HeroCanvas({ mousePosRef, isMobile }) {
     const animate = () => {
       raf = requestAnimationFrame(animate);
       t += isMobile ? 0.003 : 0.004;
-
-      points.rotation.y = t * 0.15;
-      points.rotation.x = t * 0.04;
-      ico.rotation.y = -t * 0.3;
-      ico.rotation.z = t * 0.15;
+      points.rotation.y = t * 0.15; points.rotation.x = t * 0.04;
+      ico.rotation.y = -t * 0.3; ico.rotation.z = t * 0.15;
       ring.rotation.z = t * 0.2;
-      ring2.rotation.z = -t * 0.25;
-      ring2.rotation.y = t * 0.1;
-
+      ring2.rotation.z = -t * 0.25; ring2.rotation.y = t * 0.1;
       if (isMobile) {
         camera.position.x += (touchTarget.x - camera.position.x) * 0.05;
         camera.position.y += (touchTarget.y - camera.position.y) * 0.05;
@@ -227,12 +300,10 @@ function HeroCanvas({ mousePosRef, isMobile }) {
     };
     animate();
 
-    const onResize = () => setSize();
-    window.addEventListener("resize", onResize);
-
+    window.addEventListener("resize", setSize);
     return () => {
       cancelAnimationFrame(raf);
-      window.removeEventListener("resize", onResize);
+      window.removeEventListener("resize", setSize);
       if (isMobile) window.removeEventListener("touchmove", onTouch);
       renderer.dispose();
     };
@@ -246,7 +317,7 @@ function HeroCanvas({ mousePosRef, isMobile }) {
 }
 
 /* ══════════════════════════════════════════
-   3D TILT CARD (desktop only, touch devices get tap animation)
+   3D TILT CARD
 ══════════════════════════════════════════ */
 function TiltCard({ children, style, color = "#00FFB2", isMobile }) {
   const ref = useRef(null);
@@ -308,6 +379,219 @@ function Counter({ target, suffix = "" }) {
 }
 
 /* ══════════════════════════════════════════
+   SERVICE CARD
+══════════════════════════════════════════ */
+function ServiceCard({ service, isMobile, onBook }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <TiltCard color={service.color} isMobile={isMobile} style={{ borderRadius: 16, padding: isMobile ? "20px 18px" : "26px", display: "flex", flexDirection: "column" }}>
+
+      {/* Top row */}
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 18 }}>
+        <div style={{
+          width: 46, height: 46, borderRadius: 12,
+          background: `${service.color}14`, border: `1px solid ${service.color}30`,
+          display: "flex", alignItems: "center", justifyContent: "center",
+          fontSize: 20, color: service.color,
+        }}>
+          {service.icon}
+        </div>
+        <span style={{
+          fontFamily: "'Space Mono',monospace", fontSize: 7, color: service.color,
+          border: `1px solid ${service.color}30`, padding: "3px 9px", borderRadius: 100,
+          letterSpacing: 1.5, background: `${service.color}08`,
+        }}>AVAILABLE</span>
+      </div>
+
+      {/* Accent bar */}
+      <div style={{ width: 28, height: 2, background: service.color, borderRadius: 2, marginBottom: 14, boxShadow: `0 0 8px ${service.color}` }} />
+
+      {/* Title */}
+      <h3 style={{ fontSize: isMobile ? 15 : 17, fontWeight: 800, color: "#fff", marginBottom: 8, lineHeight: 1.25 }}>
+        {service.title}
+      </h3>
+
+      {/* Short desc */}
+      <p style={{ color: "rgba(255,255,255,0.42)", fontSize: isMobile ? 11.5 : 12.5, lineHeight: 1.75, marginBottom: 16, flex: 1 }}>
+        {service.short}
+      </p>
+
+      {/* Toggle features */}
+      <button onClick={() => setOpen(!open)} style={{
+        background: "none", border: `1px solid ${service.color}28`,
+        color: "rgba(255,255,255,0.4)", fontFamily: "'Space Mono',monospace",
+        fontSize: 8, letterSpacing: 1.5, padding: "6px 11px", borderRadius: 6,
+        cursor: "pointer", alignSelf: "flex-start", marginBottom: open ? 12 : 16,
+        transition: "all 0.2s", display: "flex", alignItems: "center", gap: 6,
+      }}
+        onMouseEnter={e => { e.currentTarget.style.borderColor = service.color + "66"; e.currentTarget.style.color = service.color; }}
+        onMouseLeave={e => { e.currentTarget.style.borderColor = service.color + "28"; e.currentTarget.style.color = "rgba(255,255,255,0.4)"; }}
+      >
+        <span style={{ display: "inline-block", transition: "transform 0.2s", transform: open ? "rotate(180deg)" : "none" }}>▾</span>
+        {open ? "HIDE DETAILS" : "WHAT'S INCLUDED"}
+      </button>
+
+      {open && (
+        <div style={{ marginBottom: 16, animation: "expandDown 0.25s cubic-bezier(0.16,1,0.3,1)" }}>
+          {service.features.map((f, i) => (
+            <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, padding: "7px 0", borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
+              <span style={{ width: 5, height: 5, borderRadius: "50%", background: service.color, flexShrink: 0, boxShadow: `0 0 5px ${service.color}` }} />
+              <span style={{ fontFamily: "'Space Mono',monospace", fontSize: isMobile ? 9 : 9.5, color: "rgba(255,255,255,0.5)", letterSpacing: 0.3 }}>{f}</span>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* CTA */}
+      <button onClick={() => onBook(service)} style={{
+        background: service.color, color: "#07090E",
+        border: "none", padding: "12px 0", borderRadius: 8, width: "100%",
+        fontFamily: "'Space Mono',monospace", fontSize: 9, fontWeight: 700, letterSpacing: 1.5,
+        cursor: "pointer", marginTop: "auto",
+        boxShadow: `0 4px 20px ${service.color}28`,
+        transition: "opacity 0.15s, transform 0.15s",
+      }}
+        onMouseEnter={e => { e.currentTarget.style.opacity = "0.88"; e.currentTarget.style.transform = "translateY(-1px)"; }}
+        onMouseLeave={e => { e.currentTarget.style.opacity = "1"; e.currentTarget.style.transform = "none"; }}
+      >
+        {service.cta} →
+      </button>
+    </TiltCard>
+  );
+}
+
+/* ══════════════════════════════════════════
+   BOOKING MODAL
+══════════════════════════════════════════ */
+function BookingModal({ service, onClose, isMobile }) {
+  const [form, setForm] = useState({ name: "", email: "", budget: "", details: "" });
+  const [status, setStatus] = useState("idle"); // idle | sending | success | error
+
+  const submit = async (e) => {
+    e.preventDefault();
+    setStatus("sending");
+    try {
+      const res = await fetch(FORMSPREE_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({ service: service.title, ...form }),
+      });
+      setStatus(res.ok ? "success" : "error");
+    } catch { setStatus("error"); }
+  };
+
+  // Close on Escape
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === "Escape") onClose(); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onClose]);
+
+  return (
+    <div
+      onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
+      style={{
+        position: "fixed", inset: 0, zIndex: 999,
+        background: "rgba(0,0,0,0.82)", backdropFilter: "blur(14px)",
+        display: "flex", alignItems: "center", justifyContent: "center",
+        padding: "16px", animation: "fadeOverlay 0.2s ease",
+      }}
+    >
+      <div style={{
+        background: "#0C0E13", border: `1px solid ${service.color}28`,
+        borderRadius: 20, width: "100%", maxWidth: 500,
+        maxHeight: "92vh", overflowY: "auto",
+        boxShadow: `0 40px 80px rgba(0,0,0,0.7), 0 0 0 1px ${service.color}12`,
+        animation: "modalSlide 0.3s cubic-bezier(0.16,1,0.3,1)",
+      }}>
+
+        {/* Header */}
+        <div style={{ padding: "22px 22px 18px", borderBottom: "1px solid rgba(255,255,255,0.06)", display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+          <div>
+            <div style={{ fontFamily: "'Space Mono',monospace", fontSize: 8, color: service.color, letterSpacing: 2, marginBottom: 6 }}>BOOK A SERVICE</div>
+            <h2 style={{ fontSize: isMobile ? 17 : 20, fontWeight: 800, lineHeight: 1.2 }}>{service.title}</h2>
+          </div>
+          <button onClick={onClose} style={{
+            background: "rgba(255,255,255,0.06)", border: "none", color: "rgba(255,255,255,0.45)",
+            width: 30, height: 30, borderRadius: "50%", cursor: "pointer", fontSize: 14,
+            display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
+            transition: "background 0.2s",
+          }}
+            onMouseEnter={e => e.currentTarget.style.background = "rgba(255,255,255,0.12)"}
+            onMouseLeave={e => e.currentTarget.style.background = "rgba(255,255,255,0.06)"}
+          >✕</button>
+        </div>
+
+        <div style={{ padding: "20px 22px 24px" }}>
+          {status === "success" ? (
+            /* ── Success state */
+            <div style={{ textAlign: "center", padding: "28px 0" }}>
+              <div style={{ width: 56, height: 56, borderRadius: "50%", background: `${service.color}18`, border: `2px solid ${service.color}`, display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 18px", fontSize: 22, color: service.color }}>✓</div>
+              <h3 style={{ fontSize: 18, fontWeight: 800, color: service.color, marginBottom: 8 }}>Request Sent!</h3>
+              <p style={{ color: "rgba(255,255,255,0.45)", fontSize: 13, lineHeight: 1.7, marginBottom: 24 }}>
+                I'll review your request and get back to you within 24 hours.
+              </p>
+              <button onClick={onClose} style={{ background: service.color, color: "#07090E", border: "none", padding: "11px 28px", borderRadius: 8, fontFamily: "'Space Mono',monospace", fontSize: 9, fontWeight: 700, letterSpacing: 1.5, cursor: "pointer" }}>
+                CLOSE
+              </button>
+            </div>
+          ) : (
+            /* ── Form */
+            <form onSubmit={submit} style={{ display: "flex", flexDirection: "column", gap: 11 }}>
+
+              {status === "error" && (
+                <div style={{ background: "rgba(255,80,80,0.07)", border: "1px solid rgba(255,80,80,0.28)", color: "#FF6B6B", padding: "10px 14px", borderRadius: 7, fontFamily: "'Space Mono',monospace", fontSize: 9 }}>
+                  ✗ Something went wrong. Please try again.
+                </div>
+              )}
+
+              <input placeholder="Your Name" required value={form.name}
+                onChange={e => setForm({ ...form, name: e.target.value })}
+                style={MI} onFocus={e => e.target.style.borderColor = service.color} onBlur={e => e.target.style.borderColor = "rgba(255,255,255,0.1)"} />
+
+              <input type="email" placeholder="Your Email" required value={form.email}
+                onChange={e => setForm({ ...form, email: e.target.value })}
+                style={MI} onFocus={e => e.target.style.borderColor = service.color} onBlur={e => e.target.style.borderColor = "rgba(255,255,255,0.1)"} />
+
+              <input placeholder="Budget (e.g. $500, open to discuss…)" value={form.budget}
+                onChange={e => setForm({ ...form, budget: e.target.value })}
+                style={MI} onFocus={e => e.target.style.borderColor = service.color} onBlur={e => e.target.style.borderColor = "rgba(255,255,255,0.1)"} />
+
+              <textarea placeholder="Describe your project — what you need, your goals, timeline…" required rows={4}
+                value={form.details} onChange={e => setForm({ ...form, details: e.target.value })}
+                style={{ ...MI, resize: "vertical" }}
+                onFocus={e => e.target.style.borderColor = service.color} onBlur={e => e.target.style.borderColor = "rgba(255,255,255,0.1)"} />
+
+              <button type="submit" disabled={status === "sending"} style={{
+                background: service.color, color: "#07090E", border: "none",
+                padding: "14px", borderRadius: 8, fontFamily: "'Space Mono',monospace",
+                fontSize: 10, fontWeight: 700, letterSpacing: 2, cursor: status === "sending" ? "not-allowed" : "pointer",
+                opacity: status === "sending" ? 0.6 : 1, width: "100%",
+                boxShadow: `0 4px 24px ${service.color}28`,
+              }}>
+                {status === "sending" ? "SENDING…" : "SEND REQUEST →"}
+              </button>
+
+              <p style={{ fontFamily: "'Space Mono',monospace", fontSize: 7, color: "rgba(255,255,255,0.18)", textAlign: "center", letterSpacing: 1 }}>
+                No commitment · I respond within 24 hours
+              </p>
+            </form>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Modal input style token
+const MI = {
+  background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.1)",
+  borderRadius: 7, padding: "12px 14px", color: "#fff",
+  fontFamily: "'Syne',sans-serif", fontSize: 13.5, outline: "none",
+  transition: "border-color 0.2s", width: "100%",
+};
+
+/* ══════════════════════════════════════════
    MAIN
 ══════════════════════════════════════════ */
 export default function Portfolio() {
@@ -319,6 +603,7 @@ export default function Portfolio() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [formState, setFormState] = useState("idle");
   const [tab, setTab] = useState("featured");
+  const [booking, setBooking] = useState(null); // service being booked
 
   useEffect(() => {
     const onR = () => setIsMobile(window.innerWidth < 768);
@@ -348,6 +633,12 @@ export default function Portfolio() {
     return () => { clearTimeout(t); obs.disconnect(); };
   }, []);
 
+  // Lock body scroll when modal open
+  useEffect(() => {
+    document.body.style.overflow = booking ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [booking]);
+
   const go = (id) => {
     setActive(id);
     setMenuOpen(false);
@@ -373,15 +664,17 @@ export default function Portfolio() {
 
   return (
     <div style={R.root}>
-      {/* Desktop cursor glow only */}
       {!isMobile && <div style={{ ...R.glow, left: mousePos.x - 260, top: mousePos.y - 260 }} />}
       <div style={R.gridBg} />
+
+      {/* Booking modal */}
+      {booking && <BookingModal service={booking} onClose={() => setBooking(null)} isMobile={isMobile} />}
 
       {/* ── NAV ── */}
       <nav style={R.nav}>
         <span style={R.logo} onClick={() => go("home")}>SF<span style={{ color: "#00FFB2" }}>/</span></span>
         {!isMobile && (
-          <div style={{ display: "flex", gap: 28 }}>
+          <div style={{ display: "flex", gap: 22 }}>
             {SECTIONS.map(s => (
               <button key={s} onClick={() => go(s)} style={{
                 background: "none", border: "none", cursor: "pointer",
@@ -421,11 +714,8 @@ export default function Portfolio() {
       {/* ── HERO ── */}
       <section id="home" style={{ minHeight: "100vh", position: "relative", display: "flex", alignItems: "center", overflow: "hidden" }}>
         <HeroCanvas mousePosRef={mousePosRef} isMobile={isMobile} />
-
-        {/* Mobile bottom gradient fade so text is readable */}
         <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "35%", background: "linear-gradient(to top, #07090E, transparent)", zIndex: 1, pointerEvents: "none" }} />
         <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "20%", background: "linear-gradient(to bottom, #07090E, transparent)", zIndex: 1, pointerEvents: "none" }} />
-
         <div style={{ position: "relative", zIndex: 2, padding: isMobile ? "100px 20px 80px" : "120px 48px 80px", maxWidth: 800, margin: "0 auto", width: "100%" }}>
           <div style={{ ...R.badge, animation: "badgePop 0.6s cubic-bezier(0.16,1,0.3,1) 0.2s both" }}>
             <span style={R.pulse} /> AVAILABLE FOR WORK · 2025
@@ -442,10 +732,10 @@ export default function Portfolio() {
           </p>
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap", animation: "slideUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.75s both" }}>
             <button style={R.btnG} onClick={() => go("contact")}>CONNECT →</button>
+            <button style={{ ...R.btnG, background: "transparent", color: "#00FFB2", border: "1px solid #00FFB2" }} onClick={() => go("services")}>SERVICES ↓</button>
             <a href={CV_URL} target="_blank" rel="noopener noreferrer" style={R.btnO}>RESUME ↓</a>
           </div>
         </div>
-
         <div style={R.scrollHint} onClick={() => go("about")}>
           <div style={{ width: 1, height: 44, background: "linear-gradient(to bottom, #00FFB2, transparent)" }} />
           <span style={{ fontFamily: "'Space Mono',monospace", fontSize: 7, letterSpacing: 3, color: "rgba(255,255,255,0.2)" }}>SCROLL</span>
@@ -465,7 +755,6 @@ export default function Portfolio() {
               <Reveal direction="up" delay={180}>
                 <p style={R.p}>With 40+ projects, professional SaaS exposure at Helixo (managing apps with 36,000+ active users), and real freelance client work, I bring technical depth and product mindset to every project.</p>
               </Reveal>
-              {/* Animated stat counters */}
               <Reveal direction="up" delay={240}>
                 <div style={{ display: "flex", gap: isMobile ? 28 : 40, marginTop: 32, flexWrap: "wrap" }}>
                   {[["40", "+", "Projects"], ["1", "yr+", "Experience"]].map(([n, s, l]) => (
@@ -479,8 +768,6 @@ export default function Portfolio() {
                 </div>
               </Reveal>
             </div>
-
-            {/* Tech stack — staggered chip animation */}
             <Reveal direction={isMobile ? "up" : "right"} delay={100}>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 7, alignContent: "start" }}>
                 {techStack.map((t, i) => (
@@ -488,8 +775,7 @@ export default function Portfolio() {
                     border: `1px solid ${t.color}44`, borderRadius: 100, padding: "5px 13px",
                     fontSize: 10, fontFamily: "'Space Mono',monospace", color: t.color,
                     display: "flex", alignItems: "center", gap: 6,
-                    animation: `chipPop 0.5s cubic-bezier(0.16,1,0.3,1) ${i * 40}ms both`,
-                    opacity: 0,
+                    animation: `chipPop 0.5s cubic-bezier(0.16,1,0.3,1) ${i * 40}ms both`, opacity: 0,
                   }}>
                     <span style={{ width: 5, height: 5, borderRadius: "50%", background: t.color, display: "block", boxShadow: `0 0 6px ${t.color}` }} />
                     {t.name}
@@ -534,7 +820,6 @@ export default function Portfolio() {
         <div style={R.inner}>
           <Reveal><div style={R.lbl}>// 03. PROJECTS</div></Reveal>
           <Reveal delay={80}><h2 style={R.h2}>Selected Work</h2></Reveal>
-
           <Reveal delay={120}>
             <div style={{ display: "flex", gap: 3, marginBottom: 32, background: "rgba(255,255,255,0.03)", borderRadius: 8, padding: 3, width: "fit-content" }}>
               {[["featured","Featured"],["mini","Mini Projects"]].map(([k,l]) => (
@@ -598,10 +883,57 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* ── CONTACT ── */}
-      <section id="contact" style={{ ...R.sec, background: "rgba(0,255,178,0.012)" }}>
+      {/* ══════════════════════════════════════════
+          ── SERVICES ──
+      ══════════════════════════════════════════ */}
+      <section id="services" style={{ ...R.sec, background: "rgba(0,255,178,0.012)" }}>
         <div style={R.inner}>
-          <Reveal><div style={R.lbl}>// 04. CONTACT</div></Reveal>
+          <Reveal><div style={R.lbl}>// 04. SERVICES</div></Reveal>
+          <Reveal delay={60}>
+            <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "flex-end", gap: 12, marginBottom: 36 }}>
+              <h2 style={{ ...R.h2, marginBottom: 0 }}>Book a Service</h2>
+              <p style={{ fontFamily: "'Space Mono',monospace", fontSize: 8, color: "rgba(255,255,255,0.28)", letterSpacing: 1.5, maxWidth: 280, lineHeight: 1.8 }}>
+                Pick a service → tell me about your project → I respond within 24h.
+              </p>
+            </div>
+          </Reveal>
+
+          {/* Service cards grid */}
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3,1fr)", gap: isMobile ? 12 : 18 }}>
+            {SERVICES.map((service, i) => (
+              <Reveal key={service.id} delay={i * 70} direction="up">
+                <ServiceCard service={service} isMobile={isMobile} onBook={setBooking} />
+              </Reveal>
+            ))}
+          </div>
+
+          {/* How it works strip */}
+          <Reveal delay={180}>
+            <div style={{ marginTop: 48, padding: isMobile ? "22px 18px" : "26px 30px", background: "rgba(255,255,255,0.018)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 14 }}>
+              <div style={{ fontFamily: "'Space Mono',monospace", fontSize: 8, color: "#00FFB2", letterSpacing: 2.5, marginBottom: 20 }}>HOW IT WORKS</div>
+              <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(4,1fr)", gap: isMobile ? 18 : 0 }}>
+                {[
+                  ["01", "Pick a Service", "Choose what fits your needs above"],
+                  ["02", "Fill the Form", "Share your project details & budget"],
+                  ["03", "I Respond", "Hear back within 24 hours"],
+                  ["04", "We Ship It", "Kick off the project and deliver"],
+                ].map(([num, title, desc], idx) => (
+                  <div key={num} style={{ padding: isMobile ? 0 : "0 20px", borderLeft: idx > 0 && !isMobile ? "1px solid rgba(255,255,255,0.06)" : "none" }}>
+                    <div style={{ fontFamily: "'Space Mono',monospace", fontSize: 20, fontWeight: 700, color: "#00FFB2", opacity: 0.25, lineHeight: 1, marginBottom: 8 }}>{num}</div>
+                    <div style={{ fontWeight: 700, fontSize: isMobile ? 12 : 13, marginBottom: 4 }}>{title}</div>
+                    <div style={{ fontSize: isMobile ? 10 : 11, color: "rgba(255,255,255,0.35)", lineHeight: 1.6 }}>{desc}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ── CONTACT ── */}
+      <section id="contact" style={R.sec}>
+        <div style={R.inner}>
+          <Reveal><div style={R.lbl}>// 05. CONTACT</div></Reveal>
           <Reveal delay={80}><h2 style={R.h2}>Let's Build</h2></Reveal>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1.5fr", gap: isMobile ? 36 : 60 }}>
             <Reveal direction={isMobile ? "up" : "left"} delay={120}>
@@ -626,7 +958,6 @@ export default function Portfolio() {
                 </div>
               </div>
             </Reveal>
-
             <Reveal direction={isMobile ? "up" : "right"} delay={160}>
               <form onSubmit={submit} style={{ display: "flex", flexDirection: "column", gap: 11 }}>
                 {formState === "success" && (
@@ -703,21 +1034,22 @@ export default function Portfolio() {
           from { opacity: 0; transform: scale(0.7) translateY(10px); }
           to { opacity: 1; transform: scale(1) translateY(0); }
         }
+        @keyframes expandDown {
+          from { opacity: 0; transform: translateY(-8px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeOverlay {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        @keyframes modalSlide {
+          from { opacity: 0; transform: scale(0.94) translateY(20px); }
+          to { opacity: 1; transform: scale(1) translateY(0); }
+        }
 
-        /* Mobile tap highlight color */
         * { -webkit-tap-highlight-color: rgba(0,255,178,0.1); }
-
-        /* Touch-friendly active states */
-        button:active, a:active {
-          opacity: 0.75;
-          transform: scale(0.97);
-          transition: transform 0.1s, opacity 0.1s;
-        }
-
-        /* Smooth section borders on mobile */
-        @media (max-width: 768px) {
-          section { border-bottom: 1px solid rgba(0,255,178,0.04); }
-        }
+        button:active, a:active { opacity: 0.75; transform: scale(0.97); transition: transform 0.1s, opacity 0.1s; }
+        @media (max-width: 768px) { section { border-bottom: 1px solid rgba(0,255,178,0.04); } }
       `}</style>
     </div>
   );
