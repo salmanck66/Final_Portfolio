@@ -70,7 +70,7 @@ const FORMSPREE_URL = "https://formspree.io/f/mpqjkkrq";
 const CV_URL = "https://drive.google.com/uc?export=download&id=1Z1LANp-jSfdch7fjXpHNEp4i-cVlAenf";
 
 /* ══════════════════════════════════════════
-   SCROLL REVEAL HOOK
+   SCROLL REVEAL HOOKS
 ══════════════════════════════════════════ */
 function useReveal() {
   const ref = useRef(null);
