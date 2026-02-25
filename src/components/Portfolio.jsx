@@ -718,7 +718,7 @@ export default function Portfolio() {
         <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "20%", background: "linear-gradient(to bottom, #07090E, transparent)", zIndex: 1, pointerEvents: "none" }} />
         <div style={{ position: "relative", zIndex: 2, padding: isMobile ? "100px 20px 80px" : "120px 48px 80px", maxWidth: 800, margin: "0 auto", width: "100%" }}>
           <div style={{ ...R.badge, animation: "badgePop 0.6s cubic-bezier(0.16,1,0.3,1) 0.2s both" }}>
-            <span style={R.pulse} /> AVAILABLE FOR WORK · 2025
+            <span style={R.pulse} /> AVAILABLE FOR WORK · 2026
           </div>
           <h1 style={{ ...R.heroH1, animation: "slideUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.35s both" }}>
             <span style={{ color: "#fff" }}>Salmanul</span><br />
