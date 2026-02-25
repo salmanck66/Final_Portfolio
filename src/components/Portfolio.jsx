@@ -65,7 +65,7 @@ const MINI = [
   { name: "Post Scheduler", desc: "Schedule posts by date/time or publish instantly.", tech: ["React"], color: "#00A8FF", site: "https://post-scheduler-lyart.vercel.app/", github: "https://github.com/salmanck66/Post-Scheduler" },
   { name: "StopWatch", desc: "Stylish responsive stopwatch with lap tracking.", tech: ["React", "TailwindCSS"], color: "#00FFB2", site: "https://stop-watch-react-js-six.vercel.app/", github: "https://github.com/salmanck66/StopWatch-ReactJs" },
 ];
-
+//minia
 const FORMSPREE_URL = "https://formspree.io/f/mpqjkkrq";
 const CV_URL = "https://drive.google.com/uc?export=download&id=1Z1LANp-jSfdch7fjXpHNEp4i-cVlAenf";
 
