@@ -468,7 +468,7 @@ export default function Portfolio() {
               {/* Animated stat counters */}
               <Reveal direction="up" delay={240}>
                 <div style={{ display: "flex", gap: isMobile ? 28 : 40, marginTop: 32, flexWrap: "wrap" }}>
-                  {[["40", "+", "Projects"], ["1", "yr+", "Experience"].map(([n, s, l]) => (
+                  {[["40", "+", "Projects"], ["1", "yr+", "Experience"]].map(([n, s, l]) => (
                     <div key={l} style={{ textAlign: "center" }}>
                       <div style={{ fontSize: isMobile ? 34 : 40, fontWeight: 800, color: "#00FFB2", letterSpacing: -2, lineHeight: 1 }}>
                         <Counter target={n} suffix={s} />
