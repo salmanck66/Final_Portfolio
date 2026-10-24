@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const EMAIL = "salmanulfaris.c.k10@gmail.com";
 const FORMSPREE_URL = "https://formspree.io/f/mpqjkkrq";
-const CV_URL = "https://drive.google.com/uc?export=download&id=1Z1LANp-jSfdch7fjXpHNEp4i-cVlAenf";
+const CV_URL = "/Salmanul_Faris_CK_Resume.pdf";
 
 const LINKS = [
   { label: "Email", href: `mailto:${EMAIL}` },
@@ -21,13 +21,13 @@ const EXPERIENCE = [
   {
     role: "Junior Software Engineer",
     company: "Helixo Innovations · Kochi",
-    period: "Oct 2024 – Mar 2025",
+    period: "Oct 2024 – Feb 2025",
     desc: "Worked on top-downloaded Shopify apps, including UFE (36,000+ active users). Built features with React, Node.js, Next.js, Remix and Svelte, and deployed with Docker on DigitalOcean.",
   },
   {
     role: "MERN Stack Intern",
     company: "Selfstack Hub · Calicut",
-    period: "Feb 2024 – Oct 2024",
+    period: "Dec 2023 – Aug 2024",
     desc: "Built 20+ projects, including a shipping aggregator API, a post scheduler and a user management app.",
   },
 ];
